@@ -6,9 +6,11 @@ export const dynamic = "force-dynamic"
 
 export async function POST(req) {
     try {
+
         await connectToDB();
-        const extractData = await req.json();
-        const saveData = await Home.create(extractData);
+        const extractData = await req.json(); // Take the data from the input form as JSON format.
+
+        const saveData = await Home.create(extractData); // Save the data to the database using the Home model.
 
         if (saveData) {
             return NextResponse.json({
